@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 
 import { fetchBudgets } from '../actions/budgetsActions'
-
+import BudgetForm from './BudgetForm';
 
 class BudgetsContainer extends Component {
 
@@ -13,8 +13,7 @@ class BudgetsContainer extends Component {
     render() {
         return (
             <div>
-                Budgets Container
-                
+                <BudgetForm/>
             </div>
         );
     }
