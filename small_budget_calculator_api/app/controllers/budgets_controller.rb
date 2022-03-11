@@ -5,7 +5,7 @@ class BudgetsController < ApplicationController
   def index
     budgets = Budget.all
 
-    render json: budgets, include: [:budget_expenses, :expenses]
+    render json: budgets, include: [:expenses]
   end
 
   # GET /budgets/1
