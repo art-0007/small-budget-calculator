@@ -1,25 +1,29 @@
-import React, { Component, useEffect } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 
 import { fetchBudgets } from '../redux/actions/budgetsActions'
-
 import BudgetForm from './BudgetForm';
+import MyButton from './UI/button/MyButton';
+import MyModal from './UI/MyModal/MyModal';
 
 
-class BudgetsContainer extends Component {
+const BudgetsContainer = () => {
 
-    componentDidMount() {
-        this.props.fetchBudgets()
-    }
+    const [modal, setModal] = useState(false)
+    const dispatch = useDispatch()
+    dispatch(fetchBudgets())
+    
+    return (
+        <div className='App'>
+            <MyButton onClick={() => setModal(true)}>
+                Create Budget
+            </MyButton>
+            <MyModal visible={modal} setVisible={setModal}>
+                <BudgetForm setVisible={setModal}/>
+            </MyModal>
+        </div>
+    );
+};
 
-    render() {
-        return (
-            <div>
-                <BudgetForm/>
-            </div>
-        );
-    }
-}
-
-
-export default connect(null, {fetchBudgets})(BudgetsContainer);
+export default BudgetsContainer;

@@ -16,7 +16,7 @@ class BudgetsController < ApplicationController
   # POST /budgets
   def create
     @budget = Budget.new(budget_params)
-
+    # binding.pry
     if @budget.save
       render json: @budget, status: :created, location: @budget
     else
