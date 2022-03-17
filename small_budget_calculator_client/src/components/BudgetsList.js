@@ -1,26 +1,27 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import BudgetItem from './BudgetItem';
+import { removeBudget } from '../redux/actions/budgetsActions'
 // import {TransitionGroup, CSSTransition} from "react-transition-group";
 
-const BudgetsList = ({budgets}) => {
-    console.log(budgets)
-    return (
-        <div className='App'>
+
+class BudgetsList extends Component {
+    render() {
+        return (
+            <div className='App'>
             <h1 style={{textAlign: 'center'}}>Budgets List</h1>
-            {budgets.map(budget =>  <BudgetItem  key={budget.id} budget={budget}/>)}   
+            {this.props.budgets.map(budget =>  <BudgetItem delete={this.props.removeBudget} key={budget.id} budget={budget}/>)}   
         </div>
-    );
-};
+        );
+    }
+}
 
 const mapStateToProps = state => {
     return { budgets: state.budgets }
 }
 
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//       delete: (budgetName) => dispatch({ type: "DELETE_BUDGET", payload: budgetName }),
-//     };
-//   };
+const mapDispatchToProps = dispatch => {
+  return { removeBudget: (id) => dispatch(removeBudget(id)) };
+}
 
-export default connect(mapStateToProps)(BudgetsList);
+export default connect(mapStateToProps, mapDispatchToProps)(BudgetsList);

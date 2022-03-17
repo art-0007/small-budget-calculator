@@ -35,6 +35,7 @@ class BudgetsController < ApplicationController
 
   # DELETE /budgets/1
   def destroy
+    # binding.pry
     @budget.destroy
   end
 
@@ -46,6 +47,6 @@ class BudgetsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def budget_params
-      params.require(:budget).permit(:name, :description)
+      params.require(:budget).permit(:name, :description, :id)
     end
 end

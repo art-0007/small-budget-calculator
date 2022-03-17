@@ -1,15 +1,16 @@
 import React from 'react';
 import MyButton from './UI/button/MyButton';
+import { connect } from 'react-redux' 
+
+import {removeBudget} from '../redux/actions/budgetsActions'
+
+
 
 const BudgetItem = (props) => {
-    console.log(props)
+    
     return (
         <div className="budget">
           <div className="budget__content">
-            {/* <strong>{props.budget.id}. {props.budget.name}</strong>
-            <div>
-                {props.budget.description}
-            </div> */}
             <strong>{props.budget.id}. {props.budget.name}</strong>
             <div>
             {props.budget.description}
@@ -17,7 +18,7 @@ const BudgetItem = (props) => {
           </div> 
                 
           <div className="budget__bttns">
-              <MyButton>
+              <MyButton onClick={() => props.delete(props.budget.id)}>
                 Delete
               </MyButton>
           </div>
@@ -25,4 +26,5 @@ const BudgetItem = (props) => {
     );
 };
 
-export default BudgetItem;
+
+export default connect(null, {removeBudget})(BudgetItem);

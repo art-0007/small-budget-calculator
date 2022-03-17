@@ -1,8 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import { connect } from 'react-redux'
 
-import { fetchBudgets } from '../actions/budgetsActions'
+import { fetchBudgets } from '../redux/actions/budgetsActions'
+
 import BudgetForm from './BudgetForm';
+
 
 class BudgetsContainer extends Component {
 
@@ -19,4 +21,5 @@ class BudgetsContainer extends Component {
     }
 }
 
-export default connect(null, { fetchBudgets })(BudgetsContainer);
+
+export default connect(null, {fetchBudgets})(BudgetsContainer);
