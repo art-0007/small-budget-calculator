@@ -5,12 +5,27 @@ import { removeBudget } from '../redux/actions/budgetsActions'
 // import {TransitionGroup, CSSTransition} from "react-transition-group";
 
 
+
 class BudgetsList extends Component {
+
+    renderBudget = () => {
+        return this.props.budgets.map((budget, idx) =>
+        <BudgetItem 
+            delete={this.props.removeBudget} 
+            number={idx + 1} 
+            key={budget.id} 
+            budget={budget}/>)
+    }
+
     render() {
         return (
             <div className='App'>
             <h1 style={{textAlign: 'center'}}>Budgets List</h1>
-            {this.props.budgets.map(budget =>  <BudgetItem delete={this.props.removeBudget} key={budget.id} budget={budget}/>)}   
+            {this.props.budgets.length !== 0
+                ? this.renderBudget()
+                : <h4 style={{textAlign: 'center'}}>-- Budgets not found --</h4>
+            }
+               
         </div>
         );
     }

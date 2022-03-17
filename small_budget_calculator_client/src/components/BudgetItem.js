@@ -11,7 +11,7 @@ const BudgetItem = (props) => {
     return (
         <div className="budget">
           <div className="budget__content">
-            <strong>{props.budget.id}. {props.budget.name}</strong>
+            <strong>{props.number}. {props.budget.name}</strong>
             <div>
             {props.budget.description}
             </div>
