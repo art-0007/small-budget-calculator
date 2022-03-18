@@ -1,8 +1,12 @@
-.link {
-    width: 100px;
-    padding: 12px;
-    margin: 0 6px 6px;
-    background: rgb(207, 237, 238);
-    text-decoration: none;
-    color: black;
-  };
+.navbar {
+    height: 50px;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    background: lightgray;
+}
+
+.navbar__links {
+    margin-left: auto;
+}
