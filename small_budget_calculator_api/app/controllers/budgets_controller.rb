@@ -10,7 +10,7 @@ class BudgetsController < ApplicationController
 
   # GET /budgets/1
   def show
-    render json: @budget
+    render json: @budget, include: [:expenses]
   end
 
   # POST /budgets
