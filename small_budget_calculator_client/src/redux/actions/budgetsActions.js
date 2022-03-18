@@ -1,18 +1,16 @@
-import { FETCH_BUDGETS, ADD_BUDGET, DELETE_BUDGET, REQUEST_BUDGETS } from "../types"
-// export const fetchBudgets = () => {
-//     return (dispatch) => {
-//         fetch('http://127.0.0.1:3000/budgets')
-//         .then(resp => resp.json())
-//         .then(budgets => dispatch({ type: FETCH_BUDGETS, payload: budgets }))
-        
-//     }
-// }
+import { ADD_BUDGET, DELETE_BUDGET, REQUEST_BUDGETS } from "../types"
+import axios from "axios";
 
 export function fetchBudgets() {
     return {
         type: REQUEST_BUDGETS
     }
 }
+
+export async function getBudget(budgetId) {
+        const response = await axios.get(`http://127.0.0.1:3000/budgets/${budgetId}`)
+        return response;
+    }
 
 export const addBudget = budget => {
 

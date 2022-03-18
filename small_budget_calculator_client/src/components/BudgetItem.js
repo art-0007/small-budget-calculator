@@ -9,7 +9,7 @@ import {removeBudget} from '../redux/actions/budgetsActions'
 const BudgetItem = (props) => {
   
   const router = useHistory()
-   console.log(router) 
+    
     return (
         <div className="budget">
           <div className="budget__content">
