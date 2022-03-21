@@ -35,6 +35,7 @@ class ExpensesController < ApplicationController
 
   # DELETE /expenses/1
   def destroy
+    # binding.pry
     @expense.destroy
   end
 

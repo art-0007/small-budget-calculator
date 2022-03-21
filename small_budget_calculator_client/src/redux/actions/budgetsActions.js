@@ -9,7 +9,7 @@ export function fetchBudgets() {
 
 export async function getBudget(budgetId) {
         const response = await axios.get(`http://127.0.0.1:3000/budgets/${budgetId}`)
-        return response;
+        return response.data;
     }
 
 export const addBudget = budget => {

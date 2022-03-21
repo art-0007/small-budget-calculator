@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import {useDispatch} from 'react-redux'
+import {useDispatch} from 'react-redux';
 
-import { fetchBudgets } from '../redux/actions/budgetsActions'
+import { fetchBudgets } from '../redux/actions/budgetsActions';
 import BudgetForm from '../components/BudgetForm';
 import MyButton from '../components/UI/button/MyButton';
 import MyModal from '../components/UI/MyModal/MyModal';
