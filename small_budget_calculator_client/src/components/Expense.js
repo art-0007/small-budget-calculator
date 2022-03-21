@@ -4,7 +4,6 @@ import MyButton from './UI/button/MyButton';
 import { removeExpense } from '../redux/actions/expensesActions';
 
 const Expense = (props) => {
-    console.log(props)
 
     const dispatch = useDispatch()
 
