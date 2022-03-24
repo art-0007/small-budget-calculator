@@ -32,6 +32,7 @@ export function removeBudget(budgetId) {
     return async dispatch => {
         const response = await fetch(`http://127.0.0.1:3000/budgets/${budgetId}`, 
         {method: 'DELETE'})
+        console.log(response)
         dispatch({type: DELETE_BUDGET, payload: budgetId })
     }
 }

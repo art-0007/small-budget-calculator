@@ -9,7 +9,6 @@ const Expense = (props) => {
 
     const handleClick = () => {
         dispatch(removeExpense(props.expense.id))
-        props.fetchBudget()
     }
 
     return (

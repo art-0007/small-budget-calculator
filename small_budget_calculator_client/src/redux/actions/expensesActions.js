@@ -1,6 +1,4 @@
 import { ADD_EXPENSE, DELETE_EXPENSE, FETCH_EXPENSES } from "../types";
-import axios from "axios";
-
 
 export const getExpenses = () => {
     return dispatch => {

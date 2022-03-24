@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import {useDispatch} from 'react-redux'
+import React, { useEffect, useMemo, useState } from 'react';
+import {useDispatch, useSelector} from 'react-redux'
 import {useParams} from 'react-router-dom'
 import { useFetch } from '../hooks/useFetch';
 import {getBudget} from '../redux/actions/budgetsActions'
-import { addExpense } from '../redux/actions/expensesActions';
+import { addExpense, fetchExpenses } from '../redux/actions/expensesActions';
 import Loader from '../components/UI/Loader/Loader';
 import Expense from '../components/Expense';
 import MyButton from '../components/UI/button/MyButton';
@@ -14,37 +14,41 @@ import ExpenseForm from '../components/ExpenseForm';
 const BudgetPage = () => {
     const params = useParams()
     const dispatch = useDispatch()
+    const myStore = useSelector( state => state)
     const [budget, setBudget] = useState({});
-    const [expenses, setExpenses] = useState([]);
     const [modal, setModal] = useState(false)
+
+
 
     const [fetchBudget, loading, error] = useFetch(async (id) => {
         const budget = await getBudget(id)
         setBudget(budget);
-        setExpenses(budget.expenses)
     })
 
-    useEffect(() => {
-        fetchBudget(params.id)
+    const getExpensesByBudgetId = useMemo(() => {
+        return myStore.expenses.filter(expense => expense.budget_id == params.id)
+    }, [myStore.expenses])
+
+    
+    useEffect(() => {   
+        fetchBudget(params.id)    
     }, [])
 
     const totalExpenses = () => {
-        return Object.values(expenses).reduce((total, value) => total + value.amount, 0)
+        return Object.values(getExpensesByBudgetId).reduce((total, value) => total + value.amount, 0)
       }
 
     const createExpense = (newExpense) => { 
         dispatch(addExpense(newExpense))
-        fetchBudget(params.id)
         setModal(false)
     }
 
     const renderExpenses = () => {
-        return expenses.map((expense, idx) => 
+        return getExpensesByBudgetId.map((expense, idx) => 
         <Expense 
         number={idx+1} 
         key={expense.id} 
         expense={expense}
-        fetchBudget={() =>fetchBudget(params.id)}
         />)
     }
          
