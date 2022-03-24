@@ -5,15 +5,24 @@ import BudgetsContainer from '../pages/BudgetsContainer';
 import About from '../pages/About'
 import error from '../pages/error';
 import BudgetPage from '../pages/BudgetPage';
+import { routes } from '../router/index'
 
 const Router = () => {
     return (
             <Switch>
-                <Route exact path='/' component={Home} />
+                {routes.map(route => 
+                   <Route
+                        component={route.component}
+                        path={route.path}
+                        exact={route.exact}
+                        key={route.path}
+                   />
+                )}
+                {/* <Route exact path='/' component={Home} />
                 <Route path='/about' component={About} />
                 <Route exact path='/budgets' component={BudgetsContainer} />
                 <Route exact path='/budgets/:id' component={BudgetPage} />
-                <Route path='/error' component={error} />
+                <Route path='/error' component={error} /> */}
                 <Redirect to='/error' />
             </Switch>            
     );
