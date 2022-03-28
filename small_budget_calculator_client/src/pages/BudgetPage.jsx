@@ -18,8 +18,7 @@ const BudgetPage = () => {
     const [budget, setBudget] = useState({});
     const [modal, setModal] = useState(false)
 
-
-
+    
     const [fetchBudget, loading, error] = useFetch(async (id) => {
         const budget = await getBudget(id)
         setBudget(budget);
