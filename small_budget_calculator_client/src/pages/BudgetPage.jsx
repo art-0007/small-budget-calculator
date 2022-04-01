@@ -9,6 +9,7 @@ import Expense from '../components/Expense';
 import MyButton from '../components/UI/button/MyButton';
 import MyModal from '../components/UI/MyModal/MyModal';
 import ExpenseForm from '../components/ExpenseForm';
+import MySelect from '../components/UI/MySelect/MySelect';
 
 
 const BudgetPage = () => {
@@ -17,16 +18,18 @@ const BudgetPage = () => {
     const myStore = useSelector( state => state)
     const [budget, setBudget] = useState({});
     const [modal, setModal] = useState(false)
+    const [sortSelect, setSortSelect] = useState('')
+    const [sortedExpenses, setSortedExpenses] = useState([])
 
-    
+        
     const [fetchBudget, loading, error] = useFetch(async (id) => {
         const budget = await getBudget(id)
         setBudget(budget);
     })
 
     const getExpensesByBudgetId = useMemo(() => {
-        return myStore.expenses.filter(expense => expense.budget_id == params.id)
-    }, [myStore.expenses])
+         return  myStore.expenses.filter(expense => expense.budget_id == params.id)
+    }, [myStore.expenses, sortSelect])
 
     
     useEffect(() => {   
@@ -43,14 +46,26 @@ const BudgetPage = () => {
     }
 
     const renderExpenses = () => {
-        return getExpensesByBudgetId.map((expense, idx) => 
+        let renderingExpenses
+        sortSelect 
+        ? 
+        renderingExpenses = sortedExpenses
+        : 
+        renderingExpenses = getExpensesByBudgetId
+        
+        return renderingExpenses.map((expense, idx) => 
         <Expense 
         number={idx+1} 
         key={expense.id} 
         expense={expense}
         />)
     }
-         
+
+    const sortExpenses = (sort) => {
+        setSortSelect(sort)
+        setSortedExpenses([...getExpensesByBudgetId].sort((a, b) => (a[sort] > b[sort]) ? 1 : -1));
+    }
+       
     return (
         <div>
             {loading
@@ -58,6 +73,20 @@ const BudgetPage = () => {
                 :  <div>
                     <h3 className="fst-italic">{budget.name}</h3>
                     <p className="fst-italic">{budget.description}</p> 
+                    <hr style={{margin: '15px 0'}}/>
+                    <div>
+                    <MySelect
+                        defaultValue='Sort by...'
+                        value = {sortSelect}
+                        onChange={sortExpenses}
+                        options= {[
+                            {value: 'name', name: 'Sort by name'},
+                            {value: 'amount', name: 'Sort by amount'}
+                        ]}
+
+                    />
+                    </div>
+                    <hr style={{margin: '15px 0'}}/>
 
                     <table className="table table-bordered border-primary">
                         <thead>
@@ -76,7 +105,7 @@ const BudgetPage = () => {
                         Add Expense
                         </MyButton>
                             <MyModal visible={modal} setVisible={setModal}>
-                                <ExpenseForm create={createExpense} budgetId={params.id} setVisible={setModal}/>
+                                <ExpenseForm create={createExpense} budgetId={params.id} />
                             </MyModal>                  
                 </div>
             }   

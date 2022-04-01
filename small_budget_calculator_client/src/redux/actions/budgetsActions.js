@@ -1,4 +1,4 @@
-import { ADD_BUDGET, DELETE_BUDGET, REQUEST_BUDGETS } from "../types"
+import { ADD_BUDGET, DELETE_BUDGET, REQUEST_BUDGETS, EDIT_BUDGET } from "../types"
 import axios from "axios";
 
 export function fetchBudgets() {
@@ -26,6 +26,20 @@ export const addBudget = budget => {
 
     }
 
+}
+
+export const editBudget = budget => {
+
+    return dispatch => {
+        
+        fetch(`http://127.0.0.1:3000/budgets/${budget.id}`, {
+            method: 'PATCH',
+            body: JSON.stringify(budget),
+            headers: { 'Content-type': 'application/json'}
+        })
+        .then(resp => resp.json())
+        .then(budget => dispatch({ type: EDIT_BUDGET, payload: budget }))
+         }
 }
 
 export function removeBudget(budgetId) {

@@ -5,6 +5,7 @@ import { removeBudget } from '../redux/actions/budgetsActions'
 import {TransitionGroup, CSSTransition} from "react-transition-group";
 import MyButton from './UI/button/MyButton';
 import MyInput from './UI/input/MyInput';
+import ExpansesList from './ExpansesList';
 
 
 const BudgetsList = (props) => {
@@ -46,7 +47,6 @@ const BudgetsList = (props) => {
                 {renderBudget()}
             </TransitionGroup>
             
-               
         </div>
         );
 }
@@ -56,7 +56,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => {
-  return { removeBudget: (id) => dispatch(removeBudget(id)) };
+  return { removeBudget: (id) => dispatch(removeBudget(id))};
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(BudgetsList);

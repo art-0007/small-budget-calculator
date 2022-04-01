@@ -23,7 +23,7 @@ const BudgetsContainer = () => {
                 Create Budget
             </MyButton>
             <MyModal visible={modal} setVisible={setModal}>
-                <BudgetForm setVisible={setModal}/>
+                <BudgetForm />
             </MyModal>
             <BudgetsList/>
         </div>

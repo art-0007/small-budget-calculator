@@ -8,14 +8,21 @@ import { Alert } from './Alert';
 
 
 class BudgetForm extends Component {
-
+    
     state = {
         name: '',
         description: ''
     }
 
+    isAddMode = () => {
+        const id = this.props.budgetId
+        const isAddMode = !id
+        return isAddMode
+    }
+
     handleChange = event => {
         event.persist()
+        
         this.setState(prev => ({...prev, ...{
           [event.target.name]: event.target.value
         }}))
@@ -23,7 +30,7 @@ class BudgetForm extends Component {
 
     handleSubmit = e => {
         e.preventDefault()
-
+        
         const {name, description} = this.state 
 
         if (!name.trim() || !description.trim()) {

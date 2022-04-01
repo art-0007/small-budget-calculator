@@ -1,5 +1,4 @@
 import React from 'react';
-import BudgetsContainer from '../pages/BudgetsContainer';
 import Router from './Router';
 import Navbar from './UI/Navbar/Navbar'
 import '../styles/App.css'
