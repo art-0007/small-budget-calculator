@@ -1,7 +1,7 @@
 # small-budget-calculator
 
 Description
-This is a small Single Page Application (SPA) for Budget calculate. Small Budget Calculator goal planning system not only helps you map out short-term expenses like birthday purty or weekend event, but also long-term savings goals like a trip to Europe or a car down payment. Small Budget Calculator was designed to put you in control of your own goal, quickly calculate and make a decision and being rewarded for doing so. 
+This is a small Single Page Application (SPA) for Budget calculate. Small Budget Calculator goal planning system not only helps you map out short-term expenses like birthday party or weekend event, but also long-term savings goals like a trip to Europe or a car down payment. Small Budget Calculator was designed to put you in control of your own goal, quickly calculate and make a decision and being rewarded for doing so. 
 
 The setups steps expect following tools installed on the system.
 Github
